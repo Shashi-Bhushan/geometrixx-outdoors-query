@@ -1,4 +1,7 @@
-<div class="search cq-analyzable section">
+<sly data-sly-include="product-search-template.html" data-sly-unwrap/>
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientLib.js @ categories='geometrixx.product-search.main'}" data-sly-unwrap/>
+
+<div class="search">
   <center>
     <form action="/content/geometrixx-outdoors/en/toolbar/search.html">
       <input size="41" maxlength="2048" name="productSearch"/>
@@ -7,7 +10,7 @@
   </center>
   <br>
 
-<!-- TODO : All Data now onwards should come from HandlerBars Template -->
+<!-- TODO : All Data now onwards should come from Dust Template -->
   Results 1 - 2 of 2 for <b>ashanti</b> (0.21 seconds)
   <div class="searchRight">
 
