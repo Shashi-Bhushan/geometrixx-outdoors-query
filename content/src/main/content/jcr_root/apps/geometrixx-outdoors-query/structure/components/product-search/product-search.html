@@ -1,126 +1,26 @@
-<sly data-sly-include="product-search-template.html" data-sly-unwrap/>
+<div id="product-search-template">
+  Results' {stats.startIndex} - {stats.endIndex} of {stats.totalItems}
+  <div>
+    {#results}
+    <a href="{url}">{title}</a>
+    <div>
+    </div>
+    {url} - {date} - <a href="{similar-url}">Similar Pages</a>
+    {/results}
+  </div>
+</div>
 <sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientLib.js @ categories='geometrixx.product-search.main'}" data-sly-unwrap/>
 
 <div class="search">
   <center>
-    <form action="/content/geometrixx-outdoors/en/toolbar/search.html">
-      <input size="41" maxlength="2048" name="productSearch"/>
-      <input value="${properties.searchText ? properties.searchText : 'Search' }" type="submit"/>
-    </form>
+    <input size="41" maxlength="2048" name="productSearch"/>
+    <input value="${properties.searchText ? properties.searchText : 'Search' }" name="productSearchSubmit" type="submit"/>
   </center>
   <br>
 
 <!-- TODO : All Data now onwards should come from Dust Template -->
-  Results 1 - 2 of 2 for <b>ashanti</b> (0.21 seconds)
-  <div class="searchRight">
 
-
-    <p>Languages</p>
-
-
-    <a title="filter results" href="/content/geometrixx-outdoors/en/toolbar/search.html?q=ashanti&amp;language=en">
-      English (2)
-    </a>
-
-    <br>
-
-
-    <p>Tags</p>
-
-
-    <a title="filter results"
-       href="/content/geometrixx-outdoors/en/toolbar/search.html?q=ashanti&amp;tag=geometrixx-outdoors%3aapparel%2fshirt">
-      Shirt (2)
-    </a>
-
-    <br>
-
-
-    <a title="filter results"
-       href="/content/geometrixx-outdoors/en/toolbar/search.html?q=ashanti&amp;tag=geometrixx-outdoors%3aactivity%2frunning">
-      Running (1)
-    </a>
-
-    <br>
-
-
-    <a title="filter results"
-       href="/content/geometrixx-outdoors/en/toolbar/search.html?q=ashanti&amp;tag=geometrixx-outdoors%3agender%2fwomen">
-      Women (1)
-    </a>
-
-    <br>
-
-
-    <a title="filter results"
-       href="/content/geometrixx-outdoors/en/toolbar/search.html?q=ashanti&amp;tag=geometrixx-outdoors%3aseason%2fsummer">
-      Summer (2)
-    </a>
-
-    <br>
-
-
-    <a title="filter results"
-       href="/content/geometrixx-outdoors/en/toolbar/search.html?q=ashanti&amp;tag=geometrixx-outdoors%3agender%2fmen">
-      Men (2)
-    </a>
-
-    <br>
-
-
-    <a title="filter results"
-       href="/content/geometrixx-outdoors/en/toolbar/search.html?q=ashanti&amp;tag=geometrixx-outdoors%3aapparel%2fshorts">
-      Shorts (1)
-    </a>
-
-    <br>
-
-
-    <a title="filter results"
-       href="/content/geometrixx-outdoors/en/toolbar/search.html?q=ashanti&amp;tag=geometrixx-outdoors%3aapparel%2ffootwear">
-      Footwear (1)
-    </a>
-
-    <br>
-
-
-    <p>Last Modified</p>
-
-
-    <a title="filter results"
-       href="/content/geometrixx-outdoors/en/toolbar/search.html?q=ashanti&amp;from=&amp;to=1451586600000">
-      Earlier than last year (2)
-    </a>
-
-    <br>
-
-
+  <div id="output">
   </div>
-
-
-  <br>
-
-  <br>
-
-  <a href="/content/geometrixx-outdoors/en/men/shirts/ashanti-nomad.html" onclick="trackSelectedResult(this, 1)">Ashanti
-    Nomad</a>
-  <div></div>
-  /content/geometrixx-outdoors/en/men/shirts/ashanti-nomad.html - Jun 11, 2013 - <a
-  href="/content/geometrixx-outdoors/en/toolbar/search.html?q=related%3A%2Fcontent%2Fgeometrixx-outdoors%2Fen%2Fmen%2Fshirts%2Fashanti-nomad">Similar
-  Pages</a>
-  <br>
-
-  <br>
-
-  <a href="/content/geometrixx-outdoors/en/activities/nairobi-runners-running.html"
-     onclick="trackSelectedResult(this, 2)">Running</a>
-  <div>It’s okay to run outside the lines. Ditch the asphalt and hit the trails. &nbsp;</div>
-  /content/geometrixx-outdoors/en/activities/nairobi-runners-running.html - Dec 21, 2014 - <a
-  href="/content/geometrixx-outdoors/en/toolbar/search.html?q=related%3A%2Fcontent%2Fgeometrixx-outdoors%2Fen%2Factivities%2Fnairobi-runners-running">Similar
-  Pages</a>
-  <br>
-
-  <br>
-
 
 </div>
