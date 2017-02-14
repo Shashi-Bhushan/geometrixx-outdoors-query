@@ -1,3 +1,13 @@
-
-
-<a href="test">test</a>
+<div id="product-search-template" style="display: none;">
+  Results {stats.startIndex} - {stats.endIndex} of {stats.totalItems}
+  <br/>
+  <div>
+    {#results}
+    <a href="{url}" x-cq-linkchecker="skip">{title}</a>
+    <div>
+    </div>
+    {url} - {date} - <a href="{similar-url}" x-cq-linkchecker="skip">Similar Pages</a>
+    <br/>
+    {/results}
+  </div>
+</div>

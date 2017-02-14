@@ -1,14 +1,4 @@
-<div id="product-search-template">
-  Results' {stats.startIndex} - {stats.endIndex} of {stats.totalItems}
-  <div>
-    {#results}
-    <a href="{url}">{title}</a>
-    <div>
-    </div>
-    {url} - {date} - <a href="{similar-url}">Similar Pages</a>
-    {/results}
-  </div>
-</div>
+<sly data-sly-include="product-search-template.html" data-sly-unwrap/>
 <sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientLib.js @ categories='geometrixx.product-search.main'}" data-sly-unwrap/>
 
 <div class="search">
