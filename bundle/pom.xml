@@ -64,6 +64,10 @@
         <groupId>com.day.cq</groupId>
         <artifactId>cq-search</artifactId>
       </dependency>
+      <dependency>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+      </dependency>
     </dependencies>
 
     <!-- ====================================================================== -->
