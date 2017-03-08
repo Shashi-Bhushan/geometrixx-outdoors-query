@@ -5,6 +5,7 @@ import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
+import com.github.aem.constant.Constants;
 import org.apache.felix.scr.annotations.*;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -61,8 +62,9 @@ public class ProductQueryServlet extends SlingSafeMethodsServlet {
 
     JSONArray array = null;
 
+    Map<String, String> searchCriteria = getSearchMap(request);
     try {
-      array = getResults(request);
+      array = getResults(request, searchCriteria);
     } catch (RepositoryException e) {
       e.printStackTrace();
     } catch (JSONException e) {
@@ -73,13 +75,11 @@ public class ProductQueryServlet extends SlingSafeMethodsServlet {
 
   }
 
-  private JSONArray getResults(SlingHttpServletRequest request) throws RepositoryException, JSONException {
-    JSONArray searchResults = new JSONArray();
-
+  private Map<String, String> getSearchMap(SlingHttpServletRequest request) {
     Map<String, String> searchCriteria = new HashMap<String, String>();
 
-    searchCriteria.put("path", "/etc/commerce/products/geometrixx-outdoors");
-    searchCriteria.put("type", "nt:unstructured");
+    searchCriteria.put(Constants.PATH, "/etc/commerce/products/geometrixx-outdoors");
+    searchCriteria.put(Constants.TYPE, "nt:unstructured");
 
     searchCriteria.put("1_property", "sling:resourceType");
     searchCriteria.put("1_property.value", "commerce/components/product");
@@ -91,6 +91,11 @@ public class ProductQueryServlet extends SlingSafeMethodsServlet {
     searchCriteria.put("3_property.1_value", "product");
     searchCriteria.put("3_property.2_value", "variant");
 
+    return searchCriteria;
+  }
+
+  private JSONArray getResults(SlingHttpServletRequest request, Map<String, String> searchCriteria) throws RepositoryException, JSONException {
+    JSONArray searchResults = new JSONArray();
 
     PredicateGroup predicateGroup = PredicateGroup.create(searchCriteria);
     Query query = queryBuilder.createQuery(predicateGroup, request.getResourceResolver().adaptTo(Session.class));
@@ -99,12 +104,12 @@ public class ProductQueryServlet extends SlingSafeMethodsServlet {
 
     for(Hit hit: searchResult.getHits()) {
       JSONObject result = new JSONObject();
-      result.put("url", hit.getPath());
+      result.put(Constants.URL, hit.getPath());
 
       ValueMap properties = hit.getProperties();
-      result.put("title", String.valueOf(properties.get("jcr:title")));
+      result.put(Constants.TITLE, String.valueOf(properties.get("jcr:title")));
       Calendar calendar = (GregorianCalendar)properties.get("jcr:lastModified");
-      result.put("date", String.valueOf(MONTHS[calendar.get(Calendar.MONTH)] + " " + calendar.get(Calendar.YEAR) + "," + calendar.get(Calendar.DATE)));
+      result.put(Constants.DATE, String.valueOf(MONTHS[calendar.get(Calendar.MONTH)] + " " + calendar.get(Calendar.YEAR) + "," + calendar.get(Calendar.DATE)));
 
       searchResults.put(result);
     }
